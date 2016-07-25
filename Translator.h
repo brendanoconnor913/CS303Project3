@@ -70,6 +70,40 @@ public:
 		outputTree(n->right);
 	}
 
+
+	string DECODE(Binary_Tree<string>& tree, BTNode<string>* root, const BTNode<string>* start, string& to_decode, string& result, const int& i) {
+
+		char morse = to_decode[i];
+
+		if (morse == '.') { //if morse equals '.' then move the root left
+			root = root->left;
+		}
+
+		if (morse == '_') { //if morse equals '.' then move the root right
+			root = root->right;
+		}
+		if (morse == ' ' || i == to_decode.size() - 1) {// if morse equals a space or it is at the end of the string, then roots data to string, and reset the root
+			result += root->data;
+			root = tree.getRoot();
+		}
+
+		if (i == to_decode.size() - 1) {//if end of string return message
+			return result;
+		}
+
+		return DECODE(tree, root, start, to_decode, result, i + 1);
+
+	}
+
+	string DECODE_Wrapper(string& to_decode) {
+		BTNode<string>* root = decode.getRoot();
+		const BTNode<string>* start = root;
+		const int i = 0;
+		string result;
+
+		return DECODE(decode, root, start, to_decode, result, i);
+	}
+
 	//encodes a string
 	string encodeLine(string line){
 		string::iterator itr = line.begin();
@@ -81,11 +115,11 @@ public:
 			currentLetter = *itr;
 			if (isupper(currentLetter)) { currentLetter = tolower(currentLetter); }//get rid of capitals
 			currentLetterS = currentLetter;
-			cout<<currentLetterS<<" "<<encode[currentLetterS]<<endl; //test
+			//cout<<currentLetterS<<" "<<encode[currentLetterS]<<endl; // log output
 			result+= (encode[currentLetterS]+" ");
 			itr++;
 		}
-		cout<<result;//test
+		// cout<<result;
 		return result;
 	}
 
