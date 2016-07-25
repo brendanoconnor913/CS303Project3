@@ -1,11 +1,9 @@
 #ifndef TRANSLATOR
 #define TRANSLATOR
 
-#include "Morse.h"
+
 #include <fstream>
 #include <vector>
-#include "map.h"
-#include "Binary_Search_Tree.h"
 #include "Binary_Tree.h"
 #include <map>
 
@@ -91,7 +89,9 @@ public:
 		return result;
 	}
 
-
+	Binary_Tree<string>& getTree() {
+		return decode;
+	}
 
 private:
 	ifstream fin; // file to construct tree with

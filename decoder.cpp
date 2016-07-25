@@ -2,6 +2,7 @@
 #include <iostream>
 #include <iterator>
 #include <fstream>
+#include "Binary_Tree.h"
 #include "Translator.h"
 using namespace std;
 
@@ -41,7 +42,8 @@ string DECODE_Wrapper(Binary_Tree<string>& tree, string& to_decode) {
 int main() {
 
 	Translator t("morse.txt");
-	Binary_Tree<string> tree = t.buildTree();
+	t.buildTree();
+	Binary_Tree<string> tree = t.getTree();
 	
 	/*vector<string> expression{"Empty", "e", "i", "s", "h", "NULL" , "NULL" , "v", "NULL" , "NULL" , "u", "f", "NULL" , "NULL" , "NULL" , "a" , "r", "l", "NULL", "NULL" , "NULL" ,"w", "p", "NULL", "NULL", "j", "NULL", "NULL", "t", "n", "d", "b", "NULL" , "NULL" , "x", "NULL" , "NULL" , "k", "c", "NULL" , "NULL" , "q", "NULL" , "NULL" , "o" , "NULL" , "NULL" };
 	Binary_Tree<string> tree;
